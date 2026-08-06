@@ -1,0 +1,40 @@
+/* tag.css — Neo
+   Spec: tag.md */
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--neo-space-xs);
+  padding-inline: var(--neo-space-sm);
+  padding-block: var(--neo-space-xs);
+  background: var(--fill--base--light);
+  border: var(--neo-stroke-xs) solid var(--border--base--default);
+  border-radius: var(--neo-radius-xs);
+  font-size: var(--neo-type-body-md-medium-size);
+  font-weight: var(--neo-type-body-md-medium-weight);
+  line-height: var(--neo-type-body-md-medium-line-height);
+  color: var(--text--base--secondary);
+  white-space: nowrap;
+}
+
+.tag svg,
+.tag [aria-hidden="true"] {
+  flex-shrink: 0;
+  fill: var(--icon--base--secondary);
+  width: var(--neo-icon-size-sm);          /* 20 — master (2026-07-28); estaba en xs (16) */
+  height: var(--neo-icon-size-sm);
+}
+
+/* type=dark — existe en el master desde siempre y no estaba implementado en ninguna capa
+   (lo encontró la auditoría del 2026-07-27; medido en Figma el 2026-07-28).
+   El master usa fill/base/inverse, NO surface/base/inverse: el tag es un átomo, no un contenedor. */
+.tag--dark {
+  background: var(--fill--base--inverse);
+  border-color: var(--fill--base--inverse);
+  color: var(--text--base--contrast);
+}
+
+.tag--dark svg,
+.tag--dark [aria-hidden="true"] {
+  fill: var(--icon--base--contrast);
+}

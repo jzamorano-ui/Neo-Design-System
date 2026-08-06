@@ -1,0 +1,127 @@
+/* menu.css — Neo
+   Primitivas compartidas de lista flotante (CS menu/list 40003104:25695 + _menu/item 40003102:19674 + _divider).
+   `.menu-list` es público; `.menu-item` / `.menu-divider` son building blocks internos.
+   Las consumen Select, Combobox (rol listbox/option) y los menús de acciones (rol menu/menuitem).
+   Requiere: las hojas de tokens del sistema cargado primero. Debe cargarse ANTES de select.css / combobox.css.
+   Spec: menu.md */
+
+/* menu/list — panel flotante (público) */
+
+.menu-list {
+  position: absolute;
+  top: calc(100% + var(--neo-space-sm));
+  left: 0;
+  width: 100%;
+  min-width: 200px; /* constante de layout (no token) */
+  z-index: 10;
+  list-style: none;
+  margin: 0;
+  /* El master NO tiene padding en el panel: las filas llegan al borde. Medido 2026-07-28. */
+  padding-block: 0;
+  padding-inline: 0;
+  background: var(--surface--base--default);
+  /* borde SUTIL: la elevación la da la sombra (master: border/base/secondary = gray100). */
+  border: var(--neo-stroke-xs) solid var(--border--base--secondary);
+  border-radius: var(--neo-radius-sm);
+  box-shadow: var(--neo-elevation-md);
+  overflow: hidden;
+}
+
+/* >6 opciones → scroll, alto fijo 6 filas + 50% de la siguiente = 6×40 + 20 = 260.
+   Medido en el master (menu/list · scroll=top/mid/bottom = 260; scroll=none = 240). */
+.menu-list--scroll {
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+/* scrollbar */
+.menu-list--scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.menu-list--scroll::-webkit-scrollbar-track {
+  background: var(--fill--base--default);
+  border-radius: var(--neo-radius-pill);
+}
+.menu-list--scroll::-webkit-scrollbar-thumb {
+  background: var(--fill--base--medium);
+  border-radius: var(--neo-radius-pill);
+}
+
+/* _menu/item — opción (interno) */
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: var(--neo-space-md);
+  min-height: 40px;
+  /* padding-block sm (8): 8+24+8 = 40, que es el alto de fila del master. Con md (12) la fila
+     mide 48 y el panel con scroll (6 filas + media = 260) deja de cuadrar. Medido 2026-07-28. */
+  padding-block: var(--neo-space-sm);
+  padding-inline: var(--neo-space-lg);
+  background: var(--fill--tertiary--default);
+  cursor: pointer;
+}
+
+.menu-item:hover {
+  background: var(--fill--tertiary--hover);
+}
+
+/* focus — anillo + gap inset (el panel clippea, por eso inset).
+   El ORDEN importa: las box-shadow se pintan de adelante hacia atrás, así que el ANILLO va
+   primero (1×, pegado al borde) y el gap detrás (2×, separándolo del contenido) — igual que el
+   patrón externo de button e inputs. Invertido, la banda de 4px tapaba el anillo de 2px y el foco
+   quedaba invisible (1.07:1). Corregido 2026-07-28.
+   No toca el fondo: la opción seleccionada se sigue viendo debajo del anillo. */
+.menu-item:focus-visible {
+  outline: none;
+  box-shadow:
+    inset 0 0 0 var(--neo-stroke-focus-ring-width) var(--focus--ring--default),
+    inset 0 0 0 calc(var(--neo-stroke-focus-ring-width) * 2) var(--focus--gap--default);
+}
+
+/* active — opción seleccionada/destacada */
+.menu-item--active {
+  background: var(--fill--tertiary--active);
+}
+
+.menu-item--disabled {
+  background: var(--fill--base--disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.menu-item__label {
+  flex: 1;
+  font-size: var(--neo-type-body-lg-regular-size);
+  font-weight: var(--neo-type-body-lg-regular-weight);
+  line-height: var(--neo-type-body-lg-regular-line-height);
+  color: var(--text--base--default);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.menu-item--disabled .menu-item__label {
+  color: var(--text--base--disabled);
+}
+
+.menu-item__icon {
+  flex-shrink: 0;
+  /* 24 — master `menuItem.icono`. No lo fijaba ninguna capa: el tamaño quedaba a merced del SVG. */
+  width: var(--neo-icon-size-md);
+  height: var(--neo-icon-size-md);
+  fill: var(--icon--base--default);
+}
+
+.menu-item--disabled .menu-item__icon {
+  fill: var(--icon--base--disabled);
+}
+
+/* _divider — separador entre grupos de opciones (interno) */
+
+.menu-divider {
+  height: var(--neo-stroke-xs);
+  margin: 0;
+  border: none;
+  background: var(--border--base--secondary);
+}

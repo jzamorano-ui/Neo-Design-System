@@ -1,0 +1,173 @@
+/* button.css — Neo
+   Spec: button.md
+   Consume la capa de tokens Neo: color role-first (--fill--*, --text--*, --border--*, --focus--*)
+   + dimensionales (--neo-space-*, --neo-stroke-*, --neo-radius-*, --neo-type-*, --neo-icon-size-*). */
+
+/* Base */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--neo-space-sm);
+  border: var(--neo-stroke-xs) solid transparent;
+  border-radius: var(--neo-radius-pill);
+  cursor: pointer;
+  font-weight: var(--neo-type-body-lg-medium-weight);
+  white-space: nowrap;
+  transition: background 100ms ease, color 100ms ease, border-color 100ms ease, box-shadow 100ms ease;
+  text-decoration: none;
+}
+
+.btn:focus-visible {
+  outline: var(--neo-stroke-focus-ring-width) solid var(--focus--ring--default);
+  outline-offset: 0.125rem;
+  box-shadow: 0 0 0 0.125rem var(--focus--gap--default);
+}
+
+.btn--inverse:focus-visible {
+  outline-color: var(--focus--ring--inverse);
+  box-shadow: 0 0 0 0.125rem var(--focus--gap--inverse);
+}
+
+.btn[disabled],
+.btn--disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* El ícono acompaña al texto al apagarse — ninguna capa lo bajaba a icon/base/disabled. */
+.btn[disabled] svg,
+.btn--disabled svg {
+  fill: var(--icon--base--disabled);
+}
+
+.btn svg {
+  flex-shrink: 0;
+}
+
+/* Sizes */
+.btn--lg {
+  padding-inline: var(--neo-space-xl);
+  padding-block: var(--neo-space-sm);
+  font-size: var(--neo-type-title-sm-medium-size);
+  line-height: var(--neo-type-title-sm-medium-line-height);
+  min-height: var(--neo-button-height-lg);
+}
+
+.btn--md {
+  padding-inline: var(--neo-space-lg);
+  padding-block: var(--neo-space-sm);
+  font-size: var(--neo-type-body-lg-medium-size);
+  line-height: var(--neo-type-body-lg-medium-line-height);
+  min-height: var(--neo-button-height-md);
+}
+
+.btn--sm {
+  padding-inline: var(--neo-space-md);
+  padding-block: var(--neo-space-xs);
+  font-size: var(--neo-type-body-md-medium-size);
+  font-weight: var(--neo-type-body-md-medium-weight);
+  line-height: var(--neo-type-body-md-medium-line-height);
+  min-height: var(--neo-button-height-sm);
+}
+
+/* Icon sizes */
+/* Íconos por size — master (medido 2026-07-28): Small 16 · Medium 20 · Large 24.
+   Los tres estaban corridos una posición de la escala, y `sm` además usaba un literal de 14px que
+   no pertenece a ninguna escala del sistema. */
+.btn--lg svg { width: var(--neo-icon-size-md); height: var(--neo-icon-size-md); }
+.btn--md svg { width: var(--neo-icon-size-sm); height: var(--neo-icon-size-sm); }
+.btn--sm svg { width: var(--neo-icon-size-xs); height: var(--neo-icon-size-xs); }
+
+/* Variant — Primary / Default surface */
+.btn--primary {
+  background: var(--fill--primary--default);
+  color: var(--text--base--contrast);
+  border-color: transparent;
+}
+.btn--primary:hover  { background: var(--fill--primary--hover); }
+.btn--primary:active { background: var(--fill--primary--active); }
+.btn--primary[disabled] {
+  background: var(--fill--base--disabled);
+  color: var(--text--base--disabled);
+}
+
+/* Variant — Secondary / Default surface */
+.btn--secondary {
+  background: var(--fill--secondary--default);
+  color: var(--text--base--default);
+  border-color: transparent;
+}
+.btn--secondary:hover  { background: var(--fill--secondary--hover); }
+.btn--secondary:active { background: var(--fill--secondary--active); }
+.btn--secondary[disabled] {
+  color: var(--text--base--disabled);
+  border-color: transparent;
+}
+
+/* Variant — Tertiary / Default surface */
+.btn--tertiary {
+  background: var(--fill--tertiary--default);
+  color: var(--text--base--default);
+  border-color: transparent;
+}
+.btn--tertiary:hover  { background: var(--fill--tertiary--hover); }
+.btn--tertiary:active { background: var(--fill--tertiary--active); }
+.btn--tertiary[disabled] { color: var(--text--base--disabled); }
+
+/* Surface — Inverse */
+.btn--inverse.btn--primary {
+  background: var(--fill--primary--inverse--default);
+  color: var(--text--base--default);
+  border-color: transparent;
+}
+.btn--inverse.btn--primary:hover  { background: var(--fill--primary--inverse--hover); }
+.btn--inverse.btn--primary:active { background: var(--fill--primary--inverse--active); }
+
+.btn--inverse.btn--secondary {
+  background: var(--fill--secondary--inverse--default);
+  color: var(--text--base--contrast);
+  border-color: var(--border--base--contrast);
+}
+.btn--inverse.btn--secondary:hover  { background: var(--fill--secondary--inverse--hover); }
+.btn--inverse.btn--secondary:active { background: var(--fill--secondary--inverse--active); }
+
+.btn--inverse.btn--tertiary {
+  background: var(--fill--tertiary--inverse--default);
+  color: var(--text--base--contrast);
+  border-color: transparent;
+}
+.btn--inverse.btn--tertiary:hover  { background: var(--fill--tertiary--inverse--hover); }
+.btn--inverse.btn--tertiary:active { background: var(--fill--tertiary--inverse--active); }
+
+.btn--inverse[disabled],
+.btn--inverse.btn--disabled {
+  background: var(--fill--base--disabled);
+  color: var(--text--base--disabled);
+  border-color: transparent;
+}
+
+/* Tone — Brand (hero/landing only) */
+.btn--brand {
+  background: var(--fill--brand--primary--default);
+  color: var(--text--base--contrast);
+  border-color: transparent;
+  font-size: var(--neo-type-title-md-bold-size);
+  font-weight: var(--neo-type-title-md-bold-weight);
+  line-height: var(--neo-type-title-md-bold-line-height);
+}
+.btn--brand:hover  { background: var(--fill--brand--primary--hover); }
+.btn--brand:active { background: var(--fill--brand--primary--active); }
+/* Disabled de brand e inverse: no existían, así que un botón deshabilitado se veía IGUAL que uno
+   activo en esas dos familias. El theme sí los apagaba; solo esta capa quedaba sin regla. */
+.btn--brand[disabled],
+.btn--brand.btn--disabled {
+  background: var(--fill--base--disabled);
+  color: var(--text--base--disabled);
+}
+
+/* Icon-only button */
+.btn--icon-only { padding: 0; }
+.btn--icon-only.btn--lg { width: var(--neo-button-height-lg); height: var(--neo-button-height-lg); }
+.btn--icon-only.btn--md { width: var(--neo-button-height-md); height: var(--neo-button-height-md); }
+.btn--icon-only.btn--sm { width: var(--neo-button-height-sm); height: var(--neo-button-height-sm); }

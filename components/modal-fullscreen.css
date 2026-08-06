@@ -1,0 +1,118 @@
+/* modal-fullscreen.css — Neo
+   Spec: modal-fullscreen.md
+   Cubre el viewport (100dvh) — header y cta fijos, el scroll vive SOLO en el contenido.
+   Sin scrim: cubre todo, no hay fondo que atenuar. Breakpoint web/mobile: 720px. */
+
+.modal-full {
+  position: fixed;
+  inset: 0;
+  z-index: 1300;
+  display: grid;
+  grid-template-rows: auto 1fr auto;   /* header · contenido · cta */
+  height: 100dvh;
+  background: var(--surface--base--default);
+}
+
+/* ── header — siempre visible, es el ancla de la vista ── */
+.modal-full__header {
+  display: flex;
+  align-items: center;
+  gap: var(--neo-space-md);
+  height: 104px;
+  padding-block: var(--neo-space-xl);
+  padding-inline: var(--neo-space-3xl);
+  border-bottom: var(--neo-stroke-xs) solid var(--border--base--secondary);
+}
+
+.modal-full__title {
+  margin: 0;
+  flex: 1;
+  color: var(--text--base--default);
+  font-size: var(--neo-type-title-md-bold-size);
+  font-weight: var(--neo-type-title-md-bold-weight);
+  line-height: var(--neo-type-title-md-bold-line-height);
+}
+
+/* ✕ y ← — `button/icon`: Large 48 con glifo 24 en web, Medium 40 con glifo 20 en mobile.
+   MEDIDO en el master 2026-08-06. Antes decía 56×56 con glifo 32, y ninguno de esos dos números
+   existe en las escalas del sistema (botón 48/40/32 · ícono 24/20/16). El 56 salía de la caja del
+   ← OCULTO, inflada 8px por el padding del anillo de foco — la desviación conocida de `button/icon`
+   que el owner dejó como está. Medir la caja de una capa invisible y llamarla «target» fue el error. */
+.modal-full__close,
+.modal-full__back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--icon--base--default);
+  cursor: pointer;
+}
+
+/* WCAG 2.4.7 — son los dos únicos controles del header y no tenían foco visible. */
+.modal-full__close:focus-visible,
+.modal-full__back:focus-visible {
+  outline: var(--neo-stroke-focus-ring-width) solid var(--focus--ring--default);
+  outline-offset: 2px;
+}
+
+.modal-full__close svg,
+.modal-full__back svg { width: 24px; height: 24px; }
+
+/* ── contenido — el único con scroll ── */
+.modal-full__content {
+  overflow-y: auto;
+  padding-inline: var(--neo-space-3xl);   /* gutter web 48 */
+}
+
+/* scrollbar (web) — riel y pulgar tokenizados */
+.modal-full__content::-webkit-scrollbar { width: 8px; }
+.modal-full__content::-webkit-scrollbar-track { background: var(--fill--base--default); }
+.modal-full__content::-webkit-scrollbar-thumb { background: var(--fill--base--medium); border-radius: var(--neo-radius-pill); }
+
+/* ── cta — fijo abajo, máximo 2 acciones; primaria a la derecha en web ── */
+.modal-full__actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--neo-space-md);
+  height: 88px;
+  padding-block: var(--neo-space-xl);
+  padding-inline: var(--neo-space-3xl);
+  border-top: var(--neo-stroke-xs) solid var(--border--base--secondary);
+}
+
+/* ── mobile (< 720px): header 60 · cta apilado 128 · gutter 16 · targets 40 (glifo 20) ── */
+@media (max-width: 719px) {
+  .modal-full__header {
+    height: 60px;
+    padding: var(--neo-space-sm);
+  }
+
+  .modal-full__title {
+    font-size: var(--neo-type-body-lg-bold-size);
+    font-weight: var(--neo-type-body-lg-bold-weight);
+    line-height: var(--neo-type-body-lg-bold-line-height);
+  }
+
+  .modal-full__close,
+  .modal-full__back { width: 40px; height: 40px; }
+  .modal-full__close svg,
+  .modal-full__back svg { width: 20px; height: 20px; }
+
+  .modal-full__content { padding-inline: var(--neo-space-lg); }
+
+  /* 2 acciones apiladas — la primaria arriba */
+  .modal-full__actions {
+    flex-direction: column-reverse;
+    justify-content: center;
+    height: 128px;
+    padding-block: var(--neo-space-md) var(--neo-space-lg);
+    padding-inline: var(--neo-space-lg);
+  }
+
+  .modal-full__actions .btn { width: 100%; }
+}

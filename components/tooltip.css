@@ -1,0 +1,39 @@
+/* tooltip.css — Neo
+   Spec: tooltip.md
+   Info (azul): texto blanco sobre --fill--semantic--info--solid (AA 7.79:1).
+   El posicionamiento absoluto lo resuelve el consumidor; `type` = lado de la flecha. */
+
+.tooltip {
+  display: inline-block;
+  max-width: 40ch;
+  padding-inline: var(--neo-space-sm);
+  padding-block: var(--neo-space-xs);
+  border-radius: var(--neo-radius-xs);
+  background: var(--fill--semantic--info--solid);
+  color: var(--text--base--contrast);
+  font-size: var(--neo-type-body-md-regular-size);
+  font-weight: var(--neo-type-body-md-regular-weight);
+  line-height: var(--neo-type-body-md-regular-line-height);
+  position: relative;
+}
+
+.tooltip[hidden] { display: none; }
+
+/* ── flecha 12×6 — triángulo con el mismo fill del cuerpo ── */
+.tooltip::before {
+  content: none;
+  position: absolute;
+  border: 6px solid transparent;
+}
+
+/* verticales: flecha centrada */
+.tooltip--up::before    { content: ""; bottom: 100%; left: 50%; transform: translateX(-50%); border-bottom-color: var(--fill--semantic--info--solid); }
+.tooltip--down::before  { content: ""; top: 100%;    left: 50%; transform: translateX(-50%); border-top-color: var(--fill--semantic--info--solid); }
+/* horizontales */
+.tooltip--left::before  { content: ""; right: 100%; top: 50%; transform: translateY(-50%); border-right-color: var(--fill--semantic--info--solid); }
+.tooltip--right::before { content: ""; left: 100%;  top: 50%; transform: translateY(-50%); border-left-color: var(--fill--semantic--info--solid); }
+/* diagonales: flecha desplazada a la esquina */
+.tooltip--up-left::before    { content: ""; bottom: 100%; left: var(--neo-space-md); border-bottom-color: var(--fill--semantic--info--solid); }
+.tooltip--up-right::before   { content: ""; bottom: 100%; right: var(--neo-space-md); border-bottom-color: var(--fill--semantic--info--solid); }
+.tooltip--down-left::before  { content: ""; top: 100%; left: var(--neo-space-md); border-top-color: var(--fill--semantic--info--solid); }
+.tooltip--down-right::before { content: ""; top: 100%; right: var(--neo-space-md); border-top-color: var(--fill--semantic--info--solid); }

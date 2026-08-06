@@ -1,0 +1,48 @@
+/* link.css — Neo
+   El link HEREDA el color del texto que lo rodea (como MUI color:inherit):
+   oscuro sobre claro, blanco sobre inverse — default e inverse se resuelven solos.
+   Lo que lo distingue es el SUBRAYADO: SÓLIDO siempre, sin estados.
+   (MUI atenúa a 40% solo cuando el link tiene color propio; con color:inherit lo deja sólido.)
+   Sin estados de color ni de subrayado. Spec: link.md */
+
+/* ── Base — compartido standalone + inline ── */
+.link {
+  color: inherit;
+  /* El link va en BOLD: como no se distingue por color, el peso suma affordance junto al subrayado
+     (spec link.md). `xs` es la excepción y queda en medium — a 12px la escala no tiene bold. */
+  font-weight: var(--neo-type-body-lg-bold-weight);
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+  text-decoration-skip-ink: auto;
+  cursor: pointer;
+}
+
+.link:focus-visible {
+  outline: var(--neo-stroke-focus-ring-width) solid var(--focus--ring--default);
+  outline-offset: 2px;
+  border-radius: var(--neo-radius-xs);
+}
+
+.link--disabled,
+.link[aria-disabled="true"] {
+  color: var(--text--base--disabled);
+  pointer-events: none;
+  cursor: default;
+}
+
+/* ── Standalone (línea propia): touch target 24px (WCAG 2.5.8 AA) ── */
+.link--standalone {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+}
+
+/* ── Inline (dentro de un párrafo) ──
+   Un <a class="link"> dentro de <p> hereda font-size/line-height/baseline del párrafo.
+   NO agregar display/min-height/padding/font-size — eso rompe el flujo y descalza.
+   Exento de touch target (WCAG 2.5.8, excepción inline). */
+
+/* ── Sobre fondo oscuro ──
+   No hay variante: el link hereda text/base/contrast del contexto (color: inherit). */

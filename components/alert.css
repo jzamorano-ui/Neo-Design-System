@@ -1,0 +1,132 @@
+/* alert.css — Neo
+   Consume la capa de tokens Neo.
+   Spec: alert.md */
+
+.alert {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--neo-space-sm);   /* 8 — master (space/sm); estaba en 12 */
+  padding-inline: var(--neo-space-lg);
+  padding-block: var(--neo-space-md);
+  border-radius: var(--neo-radius-sm);
+  border-width: var(--neo-stroke-xs);
+  border-style: solid;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Ícono de severidad — md (24), igual que el master y que MuiAlert-icon en el theme */
+.alert__icon {
+  flex-shrink: 0;
+  width: var(--neo-icon-size-md);
+  height: var(--neo-icon-size-md);
+  margin-top: 0.125rem;
+}
+
+.alert__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--neo-space-xs);
+  flex: 1;
+  min-width: 0;
+}
+
+.alert__title {
+  font-size: var(--neo-type-title-xs-bold-size);
+  font-weight: var(--neo-type-title-xs-bold-weight);
+  line-height: var(--neo-type-title-xs-bold-line-height);
+}
+
+.alert__description {
+  font-size: var(--neo-type-body-md-regular-size);
+  font-weight: var(--neo-type-body-md-regular-weight);
+  line-height: var(--neo-type-body-md-regular-line-height);
+}
+
+/* El link hereda text/base/default — el master NO lo pinta con el color de la severidad
+   (medido 2026-07-28). El theme MUI ya lo hacía así; el plano era el desalineado. */
+.alert__link {
+  color: var(--text--base--default);
+  font-size: var(--neo-type-body-md-medium-size);
+  font-weight: var(--neo-type-body-md-medium-weight);
+  line-height: var(--neo-type-body-md-medium-line-height);
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+  text-decoration-skip-ink: auto;
+  cursor: pointer;
+  /* standalone touch target 24px (WCAG 2.5.8 AA) */
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  min-height: 24px;
+}
+
+
+/* Caja de 32 con ícono de 16: el master usa un `button/icon` Small (medido 2026-07-28).
+   Antes la caja era de 20 con ícono de 20 — además de no espejar el master, 20 quedaba bajo el
+   mínimo de 24×24 de WCAG 2.5.8. */
+.alert__close {
+  flex-shrink: 0;
+  color: var(--icon--base--default);   /* master (medido 2026-07-28); estaba en secondary */
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--neo-icon-size-lg);
+  height: var(--neo-icon-size-lg);
+  border-radius: var(--neo-radius-pill);   /* es un `button/icon`: pill, no xs (master 2026-07-28) */
+}
+
+.alert__close svg {
+  width: var(--neo-icon-size-xs);
+  height: var(--neo-icon-size-xs);
+}
+
+.alert__close:focus-visible {
+  outline: var(--neo-stroke-focus-ring-width) solid var(--focus--ring--default);
+}
+
+/* Variant — info */
+.alert--info {
+  background: var(--fill--semantic--info--soft);
+  border-color: var(--border--semantic--info);
+}
+
+.alert--info .alert__icon { fill: var(--icon--semantic--info); }
+.alert--info .alert__title { color: var(--text--semantic--info); }
+.alert--info .alert__description { color: var(--text--base--default); }
+
+/* Variant — success */
+.alert--success {
+  background: var(--fill--semantic--success--soft);
+  border-color: var(--border--semantic--success);
+}
+
+.alert--success .alert__icon { fill: var(--icon--semantic--success); }
+.alert--success .alert__title { color: var(--text--semantic--success); }
+.alert--success .alert__description { color: var(--text--base--default); }
+
+/* Variant — warning */
+.alert--warning {
+  background: var(--fill--semantic--warning--soft);
+  border-color: var(--border--semantic--warning);
+}
+
+.alert--warning .alert__icon { fill: var(--icon--semantic--warning); }
+.alert--warning .alert__title { color: var(--text--semantic--warning); }
+.alert--warning .alert__description { color: var(--text--base--default); }
+
+/* Variant — error */
+.alert--error {
+  background: var(--fill--semantic--error--soft);
+  border-color: var(--border--semantic--error-soft);
+}
+
+.alert--error .alert__icon { fill: var(--icon--semantic--error); }
+.alert--error .alert__title { color: var(--text--semantic--error); }
+.alert--error .alert__description { color: var(--text--base--default); }

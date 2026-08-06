@@ -1,0 +1,41 @@
+/* aspect-ratio.css — Neo
+   Contenedor que fija la proporción (ancho : alto) del contenido y la mantiene
+   al cambiar de tamaño. Reserva el espacio antes de que la imagen cargue.
+   Requiere: las hojas de tokens del sistema cargado primero.
+   Spec: aspect-ratio.md */
+
+.aspect-ratio {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9; /* default */
+  overflow: hidden;
+}
+
+/* El contenido llena la caja sin deformarse. El recorte cae en los bordes,
+   por eso el sujeto va centrado. */
+.aspect-ratio > img,
+.aspect-ratio > video,
+.aspect-ratio > picture,
+.aspect-ratio > svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Lista cerrada de proporciones — no agregar valores fuera de este set. */
+.aspect-ratio--1-1  { aspect-ratio: 1 / 1; }
+.aspect-ratio--16-9 { aspect-ratio: 16 / 9; }
+.aspect-ratio--4-3  { aspect-ratio: 4 / 3; }
+.aspect-ratio--3-4  { aspect-ratio: 3 / 4; }
+.aspect-ratio--21-9 { aspect-ratio: 21 / 9; }
+
+/* Encuadre alternativo: la imagen entra completa y sobra espacio.
+   Usar solo cuando recortar pierde información esencial. */
+.aspect-ratio--contain > img,
+.aspect-ratio--contain > video,
+.aspect-ratio--contain > picture,
+.aspect-ratio--contain > svg {
+  object-fit: contain;
+}

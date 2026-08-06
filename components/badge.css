@@ -1,0 +1,61 @@
+/* badge.css — Neo
+   Spec: badge.md
+   badge/state (semántico, con texto) · badge indicator (dot / number) · notification (badge sobre button/icon) */
+
+/* ── badge/state — estado semántico con texto ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding-inline: var(--neo-space-md);
+  padding-block: var(--neo-space-xs);
+  border: var(--neo-stroke-xs) solid transparent;
+  border-radius: var(--neo-radius-pill);
+  font-size: var(--neo-type-body-md-medium-size);
+  font-weight: var(--neo-type-body-md-medium-weight);
+  line-height: var(--neo-type-body-md-medium-line-height);
+  white-space: nowrap;
+}
+
+.badge--error   { background: var(--fill--semantic--error--soft);   border-color: var(--border--semantic--error-soft); color: var(--text--semantic--error); }
+.badge--warning { background: var(--fill--semantic--warning--soft); border-color: var(--border--semantic--warning);    color: var(--text--semantic--warning); }
+.badge--success { background: var(--fill--semantic--success--soft); border-color: var(--border--semantic--success);    color: var(--text--semantic--success); }
+.badge--info    { background: var(--fill--semantic--info--soft);    border-color: var(--border--semantic--info);       color: var(--text--semantic--info); }
+.badge--neutral { background: var(--fill--base--light);             border-color: var(--border--base--default);        color: var(--text--base--default); }
+
+/* ── badge indicator — actividad / conteo ── */
+.badge--dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: none;
+  border-radius: var(--neo-radius-pill);
+  background: var(--fill--semantic--error--solid);
+}
+
+.badge--number {
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding-inline: var(--neo-space-xs);
+  padding-block: 0;
+  border: none;
+  border-radius: var(--neo-radius-pill);
+  background: var(--fill--semantic--error--solid);
+  color: var(--text--base--contrast);
+  font-size: var(--neo-type-caption-sm-medium-size);
+  font-weight: var(--neo-type-caption-sm-medium-weight);
+  line-height: var(--neo-type-caption-sm-medium-line-height);
+}
+
+/* ── notification — badge montado sobre button/icon ── */
+.notification {
+  position: relative;
+  display: inline-flex;
+}
+
+.notification .badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(35%, -35%);
+}

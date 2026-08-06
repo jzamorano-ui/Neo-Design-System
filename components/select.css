@@ -1,0 +1,165 @@
+/* select.css — Neo
+   Consume la capa de tokens Neo (--fill--*, --text--*, --border--*, --focus--*, --icon--* + --neo-*).
+   Requiere: menu.css cargado primero (menu/list es dueño de las primitivas de lista).
+   Spec: select.md */
+
+.select {
+  display: flex;
+  flex-direction: column;
+  gap: var(--neo-space-xs);
+  position: relative;
+  width: 100%;
+}
+
+/* Label */
+
+.select__label-row {
+  display: flex;
+  align-items: center;
+  gap: var(--neo-space-xs);
+}
+
+.select__label {
+  font-size: var(--neo-type-body-lg-medium-size);
+  font-weight: var(--neo-type-body-lg-medium-weight);
+  line-height: var(--neo-type-body-lg-medium-line-height);
+  color: var(--text--base--default);
+}
+
+/* Trigger */
+
+.select__trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--neo-space-sm);
+  min-height: 44px; /* touch-target del master — con padBlock sm(8) el alto lo fija min-height */
+  padding-block: var(--neo-space-sm);
+  padding-inline: var(--neo-space-md);
+  min-width: 160px; /* constante de layout (no token) */
+  border: var(--neo-stroke-xs) solid var(--border--base--default);
+  border-radius: var(--neo-radius-sm);
+  background: var(--fill--base--default);
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  transition: border-color 100ms ease, box-shadow 100ms ease;
+}
+
+.select__value {
+  flex: 1;
+  font-size: var(--neo-type-body-lg-regular-size);
+  font-weight: var(--neo-type-body-lg-regular-weight);
+  line-height: var(--neo-type-body-lg-regular-line-height);
+  color: var(--text--base--default);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.select__value--placeholder {
+  color: var(--text--base--secondary);
+}
+
+.select__chevron {
+  flex-shrink: 0;
+  fill: var(--icon--base--secondary);
+  transition: transform 150ms ease;
+}
+
+/* Helper & feedback */
+
+.select__helper,
+.select__feedback {
+  font-size: var(--neo-type-body-md-regular-size);
+  font-weight: var(--neo-type-body-md-regular-weight);
+  line-height: var(--neo-type-body-md-regular-line-height);
+}
+
+.select__helper   { color: var(--text--base--secondary); }
+.select__feedback { color: var(--text--semantic--error); }
+
+/* States */
+
+/* focus — navegación por teclado (anillo ring + gap, dos capas) */
+.select__trigger:focus-visible,
+.select--focus .select__trigger {
+  outline: none;
+  box-shadow:
+    0 0 0 var(--neo-stroke-focus-ring-width) var(--focus--gap--default),
+    0 0 0 calc(var(--neo-stroke-focus-ring-width) * 2) var(--focus--ring--default);
+}
+
+/* active — panel desplegado */
+.select--active .select__trigger {
+  border-color: var(--border--base--focus);
+}
+
+.select--active .select__chevron {
+  transform: rotate(180deg);
+}
+
+.select--filled .select__value {
+  color: var(--text--base--default);
+}
+
+.select--filled .select__chevron {
+  fill: var(--icon--base--default);
+}
+
+.select--error .select__trigger {
+  border-color: var(--border--semantic--error-solid);
+}
+
+.select--error .select__label {
+  color: var(--text--semantic--error);
+}
+
+.select--error .select__trigger:focus-visible,
+.select--error.select--focus .select__trigger {
+  border-color: var(--border--semantic--error-solid);
+  box-shadow:
+    0 0 0 var(--neo-stroke-focus-ring-width) var(--focus--gap--default),
+    0 0 0 calc(var(--neo-stroke-focus-ring-width) * 2) var(--focus--ring--default);
+}
+
+.select--readonly .select__trigger {
+  background: var(--fill--base--medium);
+  border-color: var(--border--base--default);
+  cursor: default;
+  pointer-events: none;
+}
+
+.select--disabled .select__trigger {
+  background: var(--fill--base--disabled);
+  border-color: var(--border--base--disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.select--disabled .select__label {
+  color: var(--text--base--disabled);
+}
+
+.select--disabled .select__value,
+.select--disabled .select__value--placeholder {
+  color: var(--text--base--disabled);
+}
+
+.select--disabled .select__chevron {
+  fill: var(--icon--base--disabled);
+}
+
+.select--disabled .select__helper {
+  color: var(--text--base--disabled);
+}
+
+/* Las primitivas .menu-list / .menu-item / .menu-divider viven ahora en menu.css
+   (menu/list es su dueño público). Select las consume — menu.css debe cargarse antes. */
+
+/* Ícono de ayuda (ⓘ) junto al label — abre el tooltip (master: icon-tooltip).
+   `semantic/info` en xs, self-colored: solo tamaño (ver text-field.css). */
+.select__icon--tooltip {
+  width: var(--neo-icon-size-xs);
+  height: var(--neo-icon-size-xs);
+  flex-shrink: 0;
+}

@@ -1,0 +1,186 @@
+/* modal-dialog.css — Neo
+   Interrumpe el flujo para pedir una decisión o una respuesta.
+   Se implementa sobre el Dialog de MUI con scroll="paper". Los anchos son constantes
+   fijas por size (no usar la prop maxWidth de MUI: resuelve contra los breakpoints
+   del theme y daría otros anchos) — este CSS ya los aplica en px.
+   Requiere: las hojas de tokens del sistema cargado primero.
+   Spec: modal-dialog.md */
+
+/* Scrim. Estaba documentado en la spec y en su tabla de a11y, y esta capa no lo tenía: el token
+   `surface/base/overlay` existe y el theme ya lo aplica en MuiBackdrop. Es visual, por eso
+   `aria-hidden`; el cierre por clic lo maneja el script del modal. */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--surface--base--overlay);
+}
+
+.modal-dialog {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface--base--default);
+  border-radius: var(--neo-radius-xl);
+  /* El ancho real = min(viewport − márgenes, max-width). El max-width es el contrato. */
+  width: calc(100% - 2 * var(--neo-space-lg));
+  overflow: hidden;
+}
+
+/* Medidas — el size define el ancho y el alto máximos. */
+.modal-dialog--xs { max-width: 440px;  max-height: 600px; }
+.modal-dialog--sm { max-width: 600px;  max-height: 700px; }
+.modal-dialog--md { max-width: 900px;  max-height: 740px; }
+.modal-dialog--lg { max-width: 1200px; max-height: 840px; }
+
+/* Gutter por medida. */
+.modal-dialog--xs { --modal-dialog-gutter: var(--neo-space-lg); }
+.modal-dialog--sm,
+.modal-dialog--md { --modal-dialog-gutter: var(--neo-space-xl); }
+.modal-dialog--lg { --modal-dialog-gutter: var(--neo-space-2xl); }
+
+/* ── Header ────────────────────────────────────────────────────────────── */
+
+.modal-dialog__header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--neo-space-md);
+  /* master `dialog.headerPad` = [16, 8, 16, 24]: a la derecha son 8, no el gutter — la ✕ ya trae su
+     propia caja de 40 y el gutter completo la separaba de más del borde. */
+  padding: var(--neo-space-lg) var(--neo-space-sm) var(--neo-space-lg) var(--modal-dialog-gutter);
+}
+
+.modal-dialog__title {
+  flex: 1;
+  margin: 0;
+  font-size: var(--neo-type-title-sm-bold-size);
+  font-weight: var(--neo-type-title-sm-bold-weight);
+  line-height: var(--neo-type-title-sm-bold-line-height);
+  color: var(--text--base--default);
+}
+
+/* El título es Title/sm-Bold en las 4 medidas — sin excepción por size
+   (antes `xs` bajaba a Body/lg-Bold; el master lo unificó el 2026-07-27). */
+
+/* La ✕ es un `button/icon` de 40 con ícono de 20 (master, medido 2026-07-28). Antes esta regla no
+   fijaba NINGUNA dimensión: el tamaño quedaba a merced del contenido. */
+.modal-dialog__close {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--neo-icon-size-xl);
+  height: var(--neo-icon-size-xl);
+  border-radius: var(--neo-radius-pill);
+}
+
+/* WCAG 2.4.7. La spec ya lo exigía en su tabla de Layout (fila «✕ (focus) → outline») y esta capa
+   no lo tenía: el único control del header quedaba sin foco visible al tabular. */
+.modal-dialog__close:focus-visible {
+  outline: var(--neo-stroke-focus-ring-width) solid var(--focus--ring--default);
+  outline-offset: 2px;
+}
+
+.modal-dialog__close svg {
+  width: var(--neo-icon-size-sm);
+  height: var(--neo-icon-size-sm);
+}
+
+/* Tipos con color — solo en xs y sm.
+   El ícono acompaña al color: el estado nunca se comunica solo con el fondo. */
+.modal-dialog--brand    .modal-dialog__header { background: var(--fill--base--default); }
+.modal-dialog--info     .modal-dialog__header { background: var(--fill--semantic--info--soft); }
+.modal-dialog--success  .modal-dialog__header { background: var(--fill--semantic--success--soft); }
+.modal-dialog--warning  .modal-dialog__header { background: var(--fill--semantic--warning--soft); }
+.modal-dialog--error .modal-dialog__header { background: var(--fill--semantic--error--soft); }
+
+.modal-dialog--brand    .modal-dialog__title { color: var(--text--base--brand); }
+.modal-dialog--info     .modal-dialog__title { color: var(--text--semantic--info); }
+.modal-dialog--success  .modal-dialog__title { color: var(--text--semantic--success); }
+.modal-dialog--warning  .modal-dialog__title { color: var(--text--semantic--warning); }
+.modal-dialog--error .modal-dialog__title { color: var(--text--semantic--error); }
+
+/* Ícono del header — medido en el master: 56 en los tipos semánticos, 64 en brand. Estaba
+   documentado en la spec y no lo implementaba ninguna capa. */
+.modal-dialog--info .modal-dialog__icon,
+.modal-dialog--success .modal-dialog__icon,
+.modal-dialog--warning .modal-dialog__icon,
+.modal-dialog--error .modal-dialog__icon {
+  width: var(--neo-icon-size-3xl);
+  height: var(--neo-icon-size-3xl);
+  flex: none;
+}
+
+.modal-dialog--brand .modal-dialog__icon {
+  width: var(--neo-icon-size-4xl);
+  height: var(--neo-icon-size-4xl);
+  flex: none;
+}
+
+/* Con ícono, la cabeza se centra. Sin ícono, va a la izquierda. */
+.modal-dialog--brand    .modal-dialog__header,
+.modal-dialog--info     .modal-dialog__header,
+.modal-dialog--success  .modal-dialog__header,
+.modal-dialog--warning  .modal-dialog__header,
+.modal-dialog--error .modal-dialog__header {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: var(--neo-space-2xl);
+}
+
+/* ── Contenido ─────────────────────────────────────────────────────────── */
+
+/* La zona de scroll. El cuerpo entero scrollea junto: la bajada nunca se trunca.
+   El título y las acciones no se mueven. */
+.modal-dialog__content {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--neo-space-lg);
+  /* master `dialog.containerPad` = [8, 24, 24, 24]: arriba son 8, no 0. */
+  padding: var(--neo-space-sm) var(--modal-dialog-gutter) var(--modal-dialog-gutter);
+}
+
+.modal-dialog__description {
+  margin: 0;
+  font-size: var(--neo-type-body-lg-regular-size);
+  font-weight: var(--neo-type-body-lg-regular-weight);
+  line-height: var(--neo-type-body-lg-regular-line-height);
+  color: var(--text--base--default);
+}
+
+/* En los tipos con color la bajada acompaña al header centrado. */
+.modal-dialog--brand    .modal-dialog__description,
+.modal-dialog--info     .modal-dialog__description,
+.modal-dialog--success  .modal-dialog__description,
+.modal-dialog--warning  .modal-dialog__description,
+.modal-dialog--error .modal-dialog__description {
+  text-align: center;
+}
+
+.modal-dialog__slot {
+  border-radius: var(--neo-radius-xs);
+}
+
+/* ── Acciones ──────────────────────────────────────────────────────────── */
+
+.modal-dialog__actions {
+  flex: none;
+  display: flex;
+  gap: var(--neo-space-md);
+  padding: var(--neo-space-lg) var(--modal-dialog-gutter) var(--modal-dialog-gutter);
+}
+
+/* xs apila a lo ancho; desde sm van en línea, a la derecha. */
+.modal-dialog--xs .modal-dialog__actions {
+  flex-direction: column;
+}
+.modal-dialog--xs .modal-dialog__actions > .btn {
+  width: 100%;
+}
+.modal-dialog--sm .modal-dialog__actions,
+.modal-dialog--md .modal-dialog__actions,
+.modal-dialog--lg .modal-dialog__actions {
+  justify-content: flex-end;
+}

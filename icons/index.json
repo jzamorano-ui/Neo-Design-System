@@ -1,0 +1,828 @@
+{
+  "system": {
+    "advertencia": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "215f122a"
+    },
+    "agregar": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "9f30750b"
+    },
+    "agregar-circulo": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "1f32dd56"
+    },
+    "alarma": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "5cf4dda5"
+    },
+    "ayuda": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "a31bd26e"
+    },
+    "bandeja-entrada": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "7812903a"
+    },
+    "bandeja-salida": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "0406efe1"
+    },
+    "bano": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "464a0099"
+    },
+    "bano-mujeres": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "8923ac29"
+    },
+    "billetera": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "2dc922fd"
+    },
+    "bolsa": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "1df226ae"
+    },
+    "bombilla": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "52d2dc5b"
+    },
+    "brujula": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "961ec92e"
+    },
+    "buscar": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "dbf09bc4"
+    },
+    "buscar-circulo": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "e3263afe"
+    },
+    "buzon-voz": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "171d7986"
+    },
+    "buzon-voz-silencio": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "7ffeca95"
+    },
+    "calendario": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "3558daa3"
+    },
+    "calendario-agregar": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "c3870090"
+    },
+    "campana": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "a1c9fb4f"
+    },
+    "campana-agregar": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "254301c1"
+    },
+    "campana-bloquear": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "f57f93e0"
+    },
+    "campana-silencio": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "58b14193"
+    },
+    "campana-timbrar": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "79d2c248"
+    },
+    "candado": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "74d7e9b0"
+    },
+    "carrito": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "5d9afcc9"
+    },
+    "carrito-agregar": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "394dba67"
+    },
+    "carrito-verificar": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "a7192642"
+    },
+    "celular": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "00b965ca"
+    },
+    "cerrar": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "55d4c541"
+    },
+    "cerrar-sesion": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "9346cbc3"
+    },
+    "chat-burbujas": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "0d6653eb"
+    },
+    "chat-escribiendo": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "9ca8c87a"
+    },
+    "chevron-abajo": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "579da94e"
+    },
+    "chevron-arriba": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "dc5484c1"
+    },
+    "chevron-derecha": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "95ce971c"
+    },
+    "chevron-izquierda": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "2db4df10"
+    },
+    "configuracion": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "0ef3b71c"
+    },
+    "copiar": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "1ea77b08"
+    },
+    "corazon": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "5ea7bf82"
+    },
+    "corazon-desactivar": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "08d950ae"
+    },
+    "correo": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "55d5cb5a"
+    },
+    "correo-enviar": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "d3dd3d94"
+    },
+    "derivacion-out": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "5558f978"
+    },
+    "descargar": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "d5e22dab"
+    },
+    "diccionario": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "a42a8040"
+    },
+    "editar": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "2be94bcf"
+    },
+    "enlace": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "615b507b"
+    },
+    "enlace-roto": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "8ff0c6f9"
+    },
+    "error": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "a511705c"
+    },
+    "escaner": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "72e0730f"
+    },
+    "escudo": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "3dda157f"
+    },
+    "escudo-verificar": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "feec1e93"
+    },
+    "estrella": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "51911440"
+    },
+    "flecha-abajo": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "107113b5"
+    },
+    "flecha-arriba": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "65cd3947"
+    },
+    "flecha-derecha": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "aeded428"
+    },
+    "flecha-izquierda": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "c212e7ac"
+    },
+    "grafico-baja": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "77231c8e"
+    },
+    "imagen": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "e5438c0e"
+    },
+    "informacion": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "d3c61ecc"
+    },
+    "inicio": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "e662f7ae"
+    },
+    "kebab": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "2d75262b"
+    },
+    "lista": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "39110dcd"
+    },
+    "lista-tareas": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "8f323ce6"
+    },
+    "llamada-entrante": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "ee5e3edb"
+    },
+    "llamada-entrante-alt": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "e1e3286b"
+    },
+    "mapa": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "82af64a9"
+    },
+    "marcador": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "fcc5e5b9"
+    },
+    "media-anterior": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "f41ec5f2"
+    },
+    "media-avanzar": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "af0a9356"
+    },
+    "media-pausa": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "c07a33e3"
+    },
+    "media-reproducir": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "5d19f4b6"
+    },
+    "media-retroceder": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "937a1182"
+    },
+    "media-siguiente": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "9d1413e3"
+    },
+    "megafono": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "b957d9c5"
+    },
+    "menos": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "5c4e327a"
+    },
+    "menu-puntos": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "2009c4c5"
+    },
+    "moneda": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "3f74be1c"
+    },
+    "nav-derecha": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "c188f08b"
+    },
+    "nav-izquierda": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "e71365aa"
+    },
+    "navegar": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "42b548c8"
+    },
+    "navegar-desactivar": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "16f2696f"
+    },
+    "nube": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "4889900b"
+    },
+    "nube-actualizar": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "30b4eee0"
+    },
+    "nube-agregar": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "b5e6d4c0"
+    },
+    "nube-alerta": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "6ffd99c0"
+    },
+    "nube-bloquear": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "d8bc0e83"
+    },
+    "nube-compartir": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "7df3a0fb"
+    },
+    "nube-transferir": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "5644925f"
+    },
+    "nube-verificar": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "81c59ec8"
+    },
+    "nube-video": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "5dfd63c9"
+    },
+    "ojo": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "fc4ddc28"
+    },
+    "ojo-oculto": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "4d56f3b1"
+    },
+    "papelera-reciclaje": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "1e8a84e7"
+    },
+    "portapapeles-agregar": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "9d27b996"
+    },
+    "portapapeles-eliminar": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "69fa206c"
+    },
+    "portapapeles-verificar": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "84e16c29"
+    },
+    "regalo": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "f384da42"
+    },
+    "reloj-circulo": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "e96e38a8"
+    },
+    "senal": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "c0c162c2"
+    },
+    "silla-ruedas": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "0e4d9ed4"
+    },
+    "sincronizar-alerta": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "f015abda"
+    },
+    "soporte": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "543e21fa"
+    },
+    "tarjeta-credito": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "d115ef60"
+    },
+    "telefono": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "276c9b1b"
+    },
+    "ubicacion": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "7f82674f"
+    },
+    "usuario-agregar": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "f7733339"
+    },
+    "usuario-circulo": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "9694278b"
+    },
+    "usuario-id": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "89f0866f"
+    },
+    "usuario-perfil": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "3a129452"
+    },
+    "usuario-proteger": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "2e5c4d85"
+    },
+    "usuario-verificar": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "9ae40528"
+    },
+    "verificar": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "d3bd2b1b"
+    },
+    "verificar-cuadro": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "1fc3c143"
+    },
+    "volumen-alto": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "d605e953"
+    },
+    "volumen-apagar": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "144f99a2"
+    },
+    "volumen-bajar": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "3ece01fe"
+    },
+    "volumen-bajo": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "624800b6"
+    },
+    "volumen-mudo": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "62131baf"
+    },
+    "wifi": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "5c7dc2bc"
+    },
+    "wifi-desactivar": {
+      "viewBox": "0 0 24 24",
+      "color": "currentColor",
+      "hash": "6ab9fcc2"
+    }
+  },
+  "semantic": {
+    "alert": {
+      "viewBox": "0 0 24 24",
+      "color": "token",
+      "hash": "1c85c91c"
+    },
+    "alert-inverse": {
+      "viewBox": "0 0 24 24",
+      "color": "token",
+      "hash": "97211e71"
+    },
+    "danger": {
+      "viewBox": "0 0 24 24",
+      "color": "token",
+      "hash": "6e735ba7"
+    },
+    "danger-inverse": {
+      "viewBox": "0 0 24 24",
+      "color": "token",
+      "hash": "d70a3477"
+    },
+    "info": {
+      "viewBox": "0 0 24 24",
+      "color": "token",
+      "hash": "2265415f"
+    },
+    "info-inverse": {
+      "viewBox": "0 0 24 24",
+      "color": "token",
+      "hash": "c8f77fb4"
+    },
+    "success": {
+      "viewBox": "0 0 24 24",
+      "color": "token",
+      "hash": "7e74c507"
+    },
+    "success-inverse": {
+      "viewBox": "0 0 24 24",
+      "color": "token",
+      "hash": "c1661308"
+    },
+    "warning": {
+      "viewBox": "0 0 24 24",
+      "color": "token",
+      "hash": "155f2107"
+    },
+    "warning-inverse": {
+      "viewBox": "0 0 24 24",
+      "color": "token",
+      "hash": "0313f53e"
+    }
+  },
+  "brand": {
+    "ambulancia": {
+      "viewBox": "0 0 24 24",
+      "color": "multicolor",
+      "hash": "7047c52d"
+    },
+    "bienestar": {
+      "viewBox": "0 0 24 24",
+      "color": "multicolor",
+      "hash": "4e1aa40e"
+    },
+    "brillos": {
+      "viewBox": "0 0 24 24",
+      "color": "multicolor",
+      "hash": "857ef2cf"
+    },
+    "call-center": {
+      "viewBox": "0 0 24 24",
+      "color": "multicolor",
+      "hash": "898ff93a"
+    },
+    "capsula": {
+      "viewBox": "0 0 24 24",
+      "color": "multicolor",
+      "hash": "368c30e4"
+    },
+    "chequeo": {
+      "viewBox": "0 0 24 24",
+      "color": "multicolor",
+      "hash": "6e917811"
+    },
+    "contacto": {
+      "viewBox": "0 0 24 24",
+      "color": "multicolor",
+      "hash": "67590cb0"
+    },
+    "conversacion": {
+      "viewBox": "0 0 24 24",
+      "color": "multicolor",
+      "hash": "c3bfe09e"
+    },
+    "cruz": {
+      "viewBox": "0 0 24 24",
+      "color": "multicolor",
+      "hash": "d79db18f"
+    },
+    "desktop": {
+      "viewBox": "0 0 24 24",
+      "color": "multicolor",
+      "hash": "3ca7e5cb"
+    },
+    "diente": {
+      "viewBox": "0 0 24 24",
+      "color": "multicolor",
+      "hash": "ea31b82e"
+    },
+    "dinero": {
+      "viewBox": "0 0 24 24",
+      "color": "multicolor",
+      "hash": "202beb6f"
+    },
+    "donar-sangre": {
+      "viewBox": "0 0 24 24",
+      "color": "multicolor",
+      "hash": "76fdb1a2"
+    },
+    "enfermero": {
+      "viewBox": "0 0 24 24",
+      "color": "multicolor",
+      "hash": "422cac5a"
+    },
+    "estetoscopio": {
+      "viewBox": "0 0 24 24",
+      "color": "multicolor",
+      "hash": "4409a2b5"
+    },
+    "garantia": {
+      "viewBox": "0 0 24 24",
+      "color": "multicolor",
+      "hash": "6b9902b8"
+    },
+    "gorro-enfermero": {
+      "viewBox": "0 0 24 24",
+      "color": "multicolor",
+      "hash": "71c281ef"
+    },
+    "gota-sangre": {
+      "viewBox": "0 0 24 24",
+      "color": "multicolor",
+      "hash": "72513f91"
+    },
+    "historial-medico": {
+      "viewBox": "0 0 24 24",
+      "color": "multicolor",
+      "hash": "7ed02ebf"
+    },
+    "hospital": {
+      "viewBox": "0 0 24 24",
+      "color": "multicolor",
+      "hash": "04a3dcf0"
+    },
+    "hospitalsymbol": {
+      "viewBox": "0 0 24 24",
+      "color": "multicolor",
+      "hash": "442ecb0f"
+    },
+    "maletin-medico": {
+      "viewBox": "0 0 24 24",
+      "color": "multicolor",
+      "hash": "048cae25"
+    },
+    "mascarilla": {
+      "viewBox": "0 0 24 24",
+      "color": "multicolor",
+      "hash": "c3adab7c"
+    },
+    "oido": {
+      "viewBox": "0 0 24 24",
+      "color": "multicolor",
+      "hash": "931b128b"
+    },
+    "ojo": {
+      "viewBox": "0 0 24 24",
+      "color": "multicolor",
+      "hash": "77d96497"
+    },
+    "pelota": {
+      "viewBox": "0 0 24 24",
+      "color": "multicolor",
+      "hash": "8373910f"
+    },
+    "ritmo-cardiaco": {
+      "viewBox": "0 0 24 24",
+      "color": "multicolor",
+      "hash": "ea4c1c81"
+    },
+    "salud": {
+      "viewBox": "0 0 24 24",
+      "color": "multicolor",
+      "hash": "35aa0c60"
+    },
+    "seguro": {
+      "viewBox": "0 0 24 24",
+      "color": "multicolor",
+      "hash": "c69169a5"
+    },
+    "silla-ruedas": {
+      "viewBox": "0 0 24 24",
+      "color": "multicolor",
+      "hash": "8c438641"
+    },
+    "tarjeta-credito": {
+      "viewBox": "0 0 24 24",
+      "color": "multicolor",
+      "hash": "1a7fe843"
+    },
+    "telemedicina": {
+      "viewBox": "0 0 24 24",
+      "color": "multicolor",
+      "hash": "84b8b089"
+    }
+  }
+}

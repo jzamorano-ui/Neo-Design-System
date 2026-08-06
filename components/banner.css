@@ -1,0 +1,130 @@
+/* banner.css — Neo
+   Spec: banner.md
+   Superficie promocional. La imagen es FONDO (cover, se recorta); el ancho lo pone el contenedor;
+   el alto lo dicta el size. device (mobile/desktop) lo elige el ANCHO disponible, no el aparato. */
+
+.banner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;      /* contenido | media */
+  overflow: hidden;
+  position: relative;
+  border-radius: var(--neo-radius-lg);
+  background: var(--fill--base--default);
+}
+
+/* alto por size × device (medidas del spec) */
+.banner--desktop.banner--large  { height: 374px; }
+.banner--desktop.banner--medium { height: 230px; }
+.banner--desktop.banner--small  { height: 90px; }
+.banner--mobile.banner--large   { height: 504px; }
+.banner--mobile.banner--medium  { height: 340px; }
+.banner--mobile.banner--small   { height: 148px; }
+
+.banner--mobile { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+.banner--small  { grid-template-rows: none; }
+
+/* ── contenido ── */
+.banner__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--neo-space-sm);
+  /* El master NO usa padding uniforme: 32 arriba (2xl) · 24 a los lados (xl) · 16 abajo (lg).
+     La imagen queda pegada al borde inferior y el bloque respira más arriba que abajo.
+     Medido 2026-07-28; antes acá había un `padding: 32` parejo. */
+  padding-top: var(--neo-space-2xl);
+  padding-inline: var(--neo-space-xl);
+  padding-bottom: var(--neo-space-lg);
+  min-width: 0;
+}
+
+.banner__icon {
+  width: var(--neo-icon-size-2xl);
+  height: var(--neo-icon-size-2xl);
+  flex-shrink: 0;
+}
+
+.banner__title {
+  margin: 0 0 var(--neo-space-xs);
+  color: var(--text--base--default);
+  font-size: var(--neo-type-title-md-bold-size);
+  font-weight: var(--neo-type-title-md-bold-weight);
+  line-height: var(--neo-type-title-md-bold-line-height);
+}
+
+/* desktop large sube la jerarquía tipográfica */
+.banner--desktop.banner--large .banner__title {
+  font-size: var(--neo-type-title-lg-bold-size);
+  line-height: var(--neo-type-title-lg-bold-line-height);
+}
+
+.banner__subtitle {
+  margin: 0;
+  color: var(--text--base--default);
+  font-size: var(--neo-type-title-sm-bold-size);
+  font-weight: var(--neo-type-title-sm-bold-weight);
+  line-height: var(--neo-type-title-sm-bold-line-height);
+}
+
+.banner--desktop.banner--large .banner__subtitle {
+  font-size: var(--neo-type-title-md-bold-size);
+  line-height: var(--neo-type-title-md-bold-line-height);
+}
+
+.banner__description {
+  margin: 0;
+  color: var(--text--base--default);
+  font-size: var(--neo-type-body-md-regular-size);
+  font-weight: var(--neo-type-body-md-regular-weight);
+  line-height: var(--neo-type-body-md-regular-line-height);
+  /* el banner no crece con el texto: trunca (extensiones máximas en el spec) */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.banner--desktop.banner--large .banner__description {
+  font-size: var(--neo-type-body-lg-regular-size);
+  line-height: var(--neo-type-body-lg-regular-line-height);
+}
+
+.banner__actions {
+  display: flex;
+  gap: var(--neo-space-md);
+  padding-top: var(--neo-space-sm);
+}
+
+/* ── media: la imagen llena la caja y se recorta ── */
+.banner__media { position: relative; min-width: 0; }
+.banner__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* small: imagen a un costado */
+.banner--small { grid-template-columns: 1fr auto; }
+.banner--small.banner--image-left { grid-template-columns: auto 1fr; }
+.banner--small.banner--image-left .banner__media { order: -1; }
+
+/* ── full photo: imagen de fondo + overlay + texto en contraste ── */
+.banner--full-photo .banner__media {
+  position: absolute;
+  inset: 0;
+}
+
+/* overlay: gradiente negro 70%→0 — constante de diseño, no se tokeniza (los gradientes no se tokenizan).
+   El gradiente hace DOS cosas a la vez, y por eso se apaga hacia la derecha: oscurece la zona donde
+   se ubica el texto, y deja ver la foto en el resto. Es intencional, no un descuido.
+   WCAG 1.4.3: el texto blanco cumple AA mientras quede en el tercio oscuro — a 0.7 da 8.45:1 sobre
+   una foto clara. Nunca quitarlo ni bajarle la opacidad, y **el texto no debe pasar de la mitad**:
+   más allá el overlay ya no alcanza (a mitad de ancho, 2.43:1). Importa sobre todo en `--mobile`,
+   donde el grid es de una sola columna y el contenido puede cruzar todo el ancho. */
+.banner--full-photo .banner__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.banner--full-photo .banner__content { position: relative; z-index: 1; }
+.banner--full-photo .banner__title,
+.banner--full-photo .banner__subtitle,
+.banner--full-photo .banner__description { color: var(--text--base--contrast); }

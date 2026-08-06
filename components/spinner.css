@@ -1,0 +1,26 @@
+/* spinner.css — Neo
+   Spec: spinner.md
+   Arco: --icon--base--default (único color, sin variant) — es el token del MASTER (medido 2026-07-28).
+   Antes usaba --border--base--focus: mismo hex (#0F202B), rol equivocado. El contenedor lleva
+   aria-busy + aria-label. */
+
+.spinner {
+  display: inline-block;
+  border: 2px solid transparent;
+  border-top-color: var(--icon--base--default);
+  border-radius: var(--neo-radius-pill);
+  animation: neo-spin 0.8s linear infinite;
+}
+
+.spinner--sm { width: 20px; height: 20px; }
+.spinner--md { width: 24px; height: 24px; }
+.spinner--lg { width: 32px; height: 32px; border-width: 3px; }
+
+@keyframes neo-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* WCAG 2.3.3 — sin animación si la persona lo pide */
+@media (prefers-reduced-motion: reduce) {
+  .spinner { animation: none; }
+}

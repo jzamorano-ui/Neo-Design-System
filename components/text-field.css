@@ -1,0 +1,207 @@
+/* text-field.css — Neo
+   CS text fields 40002482:2745: 8 estados (default · active · focus · writing · filled · error ·
+   read-only · disabled), afijos prefix/suffix, anillo de focus ring+gap, grosores por estado.
+   Consume la capa de tokens Neo: color role-first (--fill--*, --text--*, --border--*, --focus--*,
+   --icon--*) + dimensionales (--neo-space-*, --neo-stroke-*, --neo-radius-*, --neo-type-*, --neo-icon-size-*).
+   Spec: text-field.md */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--neo-space-xs);
+  width: 100%;
+}
+
+.field__label {
+  font-size: var(--neo-type-body-lg-medium-size);
+  font-weight: var(--neo-type-body-lg-medium-weight);
+  line-height: var(--neo-type-body-lg-medium-line-height);
+  color: var(--text--base--default);
+}
+
+.field__label--required::after {
+  content: ' *';
+  color: var(--text--semantic--error);
+}
+
+.field__input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--neo-space-sm);   /* 8 — master; estaba en xs (4), y select/combobox ya usaban 8 */
+  min-height: 44px; /* touch-target del master (padBlock 8 + lh 24 = 40 quedaba corto) */
+  padding-inline: var(--neo-space-md);
+  padding-block: var(--neo-space-sm);
+  border: var(--neo-stroke-xs) solid var(--border--base--default);
+  border-radius: var(--neo-radius-sm);
+  background: var(--fill--base--default);
+  transition: border-color 100ms ease, box-shadow 100ms ease;
+}
+
+.field__input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: var(--neo-type-body-lg-regular-size);
+  font-weight: var(--neo-type-body-lg-regular-weight);
+  line-height: var(--neo-type-body-lg-regular-line-height);
+  color: var(--text--base--default);
+  outline: none;
+  min-width: 0;
+}
+
+/* TEXT AREA — el master le da más aire vertical que al input de una línea: padding-block 12
+   (space/md) contra los 8 del input, y el alto lo define el contenido (hug), no un touch target.
+   Medido 2026-07-28: input 8 + alto fijo 44 · text-area 12 + alto 112. */
+.field__input-wrapper:has(textarea),
+.field__input-wrapper--textarea {
+  padding-block: var(--neo-space-md);
+  align-items: flex-start;
+}
+
+.field__input::placeholder {
+  color: var(--text--base--secondary);
+}
+
+/* Íconos leading/trailing dentro del control (master: icon-left · icon-right) */
+.field__icon {
+  fill: var(--icon--base--default);
+  width: var(--neo-icon-size-md);
+  height: var(--neo-icon-size-md);
+  flex-shrink: 0;
+}
+
+/* Ícono de ayuda (ⓘ) junto al label — abre el tooltip (master: icon-tooltip).
+   Es el ícono SEMÁNTICO `semantic/info`, NO un icono leading/trailing: clase suelta,
+   sin `.field__icon`. Bicolor y self-colored — el SVG trae el disco en
+   --icon--semantic--info y el glifo en --icon--base--contrast (ver icons/icons.css),
+   así que acá va SOLO el tamaño: xs, igual que el master. Un `fill` acá no aplicaría. */
+.field__icon--tooltip {
+  width: var(--neo-icon-size-xs);
+  height: var(--neo-icon-size-xs);
+  flex-shrink: 0;
+}
+
+/* Afijos de texto fijo — prefix (leading) · suffix (trailing) */
+.field__prefix,
+.field__suffix {
+  flex-shrink: 0;
+  font-size: var(--neo-type-body-lg-regular-size);
+  font-weight: var(--neo-type-body-lg-regular-weight);
+  line-height: var(--neo-type-body-lg-regular-line-height);
+  color: var(--text--base--default);
+}
+
+/* States */
+
+/* active / writing — interacción de escritura: borde focus 2px */
+.field--active .field__input-wrapper,
+.field--writing .field__input-wrapper {
+  border-width: var(--neo-stroke-sm);
+  border-color: var(--border--base--focus);
+}
+
+/* focus — anillo ring + gap (dos capas), EXCLUSIVO de teclado (a11y).
+   Gobernado por la clase `.field--focus`, NO por `:focus-visible`: en un <input>
+   de texto `:focus-visible` también dispara con mouse y rompería el "solo teclado".
+   CONTRATO: el consumidor enciende `.field--focus` detectando la modalidad de input
+   (keydown → teclado · pointerdown → puntero). Con mouse mandan los estados active/writing. */
+.field--focus .field__input-wrapper {
+  border-width: var(--neo-stroke-sm);
+  border-color: var(--border--base--focus);
+  box-shadow:
+    0 0 0 var(--neo-stroke-focus-ring-width) var(--focus--gap--default),
+    0 0 0 calc(var(--neo-stroke-focus-ring-width) * 2) var(--focus--ring--default);
+}
+
+/* filled — dato ingresado: borde default 1px (ortogonal a la interacción) */
+.field--filled .field__input-wrapper {
+  border-width: var(--neo-stroke-xs);
+  border-color: var(--border--base--default);
+}
+
+/* error — borde 2px (coexiste con focus → conserva el anillo) */
+.field--error .field__input-wrapper {
+  border-width: var(--neo-stroke-sm);
+  border-color: var(--border--semantic--error-solid);
+}
+
+.field--error.field--focus .field__input-wrapper {
+  box-shadow:
+    0 0 0 var(--neo-stroke-focus-ring-width) var(--focus--gap--default),
+    0 0 0 calc(var(--neo-stroke-focus-ring-width) * 2) var(--focus--ring--default);
+}
+
+/* En error, el master muestra las DOS cosas: el helper sigue neutro y el mensaje de error es una
+   capa aparte (`Feedback Message`). Antes acá se pintaba el helper de rojo, como si se convirtiera
+   en el mensaje — no es lo que hace el master. Medido 2026-07-28. */
+.field--error .field__label {
+  color: var(--text--semantic--error);
+}
+
+.field__feedback {
+  font-size: var(--neo-type-body-md-regular-size);
+  font-weight: var(--neo-type-body-md-regular-weight);
+  line-height: var(--neo-type-body-md-regular-line-height);
+  color: var(--text--semantic--error);
+}
+
+/* read-only — fondo neutro medio, borde default 1px */
+.field--readonly .field__input-wrapper {
+  background: var(--fill--base--medium);
+  border-width: var(--neo-stroke-xs);
+  border-color: var(--border--base--default);
+}
+
+.field--readonly .field__input {
+  /* spec y theme: el valor read-only NO se atenúa */
+  color: var(--text--base--default);
+  cursor: default;
+}
+
+/* disabled — fondo disabled, borde disabled 1px */
+.field--disabled .field__input-wrapper {
+  background: var(--fill--base--disabled);
+  border-width: var(--neo-stroke-xs);
+  border-color: var(--border--base--disabled);
+  pointer-events: none;
+}
+
+.field--disabled .field__label,
+.field--disabled .field__input,
+.field--disabled .field__prefix,
+.field--disabled .field__suffix,
+.field--disabled .field__helper {
+  color: var(--text--base--disabled);
+}
+
+.field--disabled .field__icon {
+  fill: var(--icon--base--disabled);
+}
+
+/* Helper text & counter */
+.field__footer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--neo-space-sm);
+}
+
+.field__helper {
+  font-size: var(--neo-type-body-md-regular-size);
+  font-weight: var(--neo-type-body-md-regular-weight);
+  line-height: var(--neo-type-body-md-regular-line-height);
+  color: var(--text--base--secondary);
+}
+
+.field__counter {
+  font-size: var(--neo-type-body-md-regular-size);
+  font-weight: var(--neo-type-body-md-regular-weight);
+  line-height: var(--neo-type-body-md-regular-line-height);
+  color: var(--text--base--secondary);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.field--error .field__counter {
+  color: var(--text--semantic--error);
+}

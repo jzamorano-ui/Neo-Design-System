@@ -1,0 +1,20 @@
+/* Neo — iconos
+   Requiere cargados primero: neo-color.css + neo-foundations.css (definen --icon--* y --neo-icon-size-*).
+
+   system   → el SVG usa currentColor; el color por defecto lo da .icon (abajo).
+   semantic → el SVG ya trae su color bindeado al token semántico (var(--icon--semantic--*)).
+              No requiere clase: ya sale con su color y es themeable.
+   brand    → multicolor propio (tokens icon/base/brand-*); color/currentColor no aplica, solo tamaño. */
+
+.icon { display: inline-flex; flex-shrink: 0; width: var(--neo-icon-size-md); height: var(--neo-icon-size-md); }
+.icon--xs { width: var(--neo-icon-size-xs); height: var(--neo-icon-size-xs); }
+.icon--sm { width: var(--neo-icon-size-sm); height: var(--neo-icon-size-sm); }
+.icon--md { width: var(--neo-icon-size-md); height: var(--neo-icon-size-md); }
+.icon--lg { width: var(--neo-icon-size-lg); height: var(--neo-icon-size-lg); }
+.icon--xl { width: var(--neo-icon-size-xl); height: var(--neo-icon-size-xl); }
+
+/* system: color por defecto (currentColor toma este valor) */
+.icon { color: var(--icon--base--default); }
+.icon--secondary { color: var(--icon--base--secondary); }
+.icon--disabled  { color: var(--icon--base--disabled); }
+.icon--inverse   { color: var(--icon--base--contrast); }

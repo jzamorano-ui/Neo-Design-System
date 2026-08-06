@@ -1,0 +1,105 @@
+/* radio-button.css — Neo
+   Spec: radio-button.md */
+
+.radio {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--neo-space-lg);
+  cursor: pointer;
+  min-height: 2.75rem;
+  padding-block: 0.625rem;
+}
+
+.radio__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+}
+
+.radio__control {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: var(--neo-radius-pill);
+  border: var(--neo-stroke-xs) solid var(--border--base--default);
+  background: var(--surface--base--default);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 100ms ease, border-color 100ms ease;
+  position: relative;
+}
+
+.radio__dot {
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: var(--neo-radius-pill);
+  background: var(--icon--base--contrast);
+  display: none;
+}
+
+.radio__label {
+  font-size: var(--neo-type-body-lg-regular-size);
+  font-weight: var(--neo-type-body-lg-regular-weight);
+  line-height: var(--neo-type-body-lg-regular-line-height);
+  color: var(--text--base--default);
+  padding-top: 0.125rem;
+}
+
+/* Hover */
+.radio:hover .radio__control {
+  border-color: var(--border--base--focus);
+}
+
+/* Checked */
+.radio--checked .radio__control,
+input[type="radio"]:checked + .radio__control {
+  /* marcado: el master usa icon/base/default (medido 2026-07-28); estaba en fill/primary/default */
+  background: var(--icon--base--default);
+  border-color: var(--icon--base--default);
+}
+
+.radio--checked .radio__dot,
+input[type="radio"]:checked + .radio__control .radio__dot {
+  display: block;
+}
+
+/* Focus */
+.radio:focus-within .radio__control {
+  outline: var(--neo-stroke-focus-ring-width) solid var(--focus--ring--default);
+  outline-offset: 0.125rem;
+  /* el gap: la segunda capa del foco. El master la tiene (medido 2026-07-28) y la spec la
+     prometía desde siempre; el CSS emitía solo el anillo. */
+  box-shadow: 0 0 0 var(--neo-stroke-focus-ring-width) var(--focus--gap--default);
+}
+
+/* Disabled */
+.radio--disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.radio--disabled .radio__control {
+  background: var(--fill--base--light);
+  border-color: var(--border--base--disabled);
+}
+
+/* MARCADO + disabled: el master apaga la marca a icon/base/disabled (medido 2026-07-28). */
+.radio--checked.radio--disabled .radio__control {
+  background: var(--icon--base--disabled);
+  border-color: var(--icon--base--disabled);
+}
+
+.radio--disabled .radio__label {
+  color: var(--text--base--disabled);
+}
+
+/* Radio group */
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--neo-space-sm);
+}

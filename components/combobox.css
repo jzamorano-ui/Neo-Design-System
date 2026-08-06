@@ -1,0 +1,222 @@
+/* combobox.css — Neo
+   CS combobox 40003354:14160: 9 estados (default · active · writing · no-results · filled · error ·
+   read-only · disabled · focus), input editable + filtrado, ícono ⊗ de limpiar, anillo ring+gap.
+   Reutiliza las primitivas compartidas `.menu-list` / `.menu-item` (definidas en menu.css).
+   Consume la capa de tokens Neo (--fill--*, --text--*, --border--*, --focus--*, --icon--* + --neo-*).
+   Requiere: menu.css cargado primero.
+   Spec: combobox.md */
+
+.combobox {
+  display: flex;
+  flex-direction: column;
+  gap: var(--neo-space-xs);
+  position: relative;
+  width: 100%;
+}
+
+/* Label */
+
+.combobox__label-row {
+  display: flex;
+  align-items: center;
+  gap: var(--neo-space-xs);
+}
+
+.combobox__label {
+  font-size: var(--neo-type-body-lg-medium-size);
+  font-weight: var(--neo-type-body-lg-medium-weight);
+  line-height: var(--neo-type-body-lg-medium-line-height);
+  color: var(--text--base--default);
+}
+
+/* Field — input editable */
+
+.combobox__field {
+  display: flex;
+  align-items: center;
+  gap: var(--neo-space-sm);
+  min-height: 44px; /* touch-target del master — con padBlock sm(8) el alto lo fija min-height */
+  padding-block: var(--neo-space-sm);
+  padding-inline: var(--neo-space-md);
+  min-width: 160px; /* constante de layout (no token) */
+  border: var(--neo-stroke-xs) solid var(--border--base--default);
+  border-radius: var(--neo-radius-sm);
+  background: var(--fill--base--default);
+  width: 100%;
+  transition: border-color 100ms ease, box-shadow 100ms ease;
+}
+
+.combobox__input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: var(--neo-type-body-lg-regular-size);
+  font-weight: var(--neo-type-body-lg-regular-weight);
+  line-height: var(--neo-type-body-lg-regular-line-height);
+  color: var(--text--base--default);
+  outline: none;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.combobox__input::placeholder {
+  color: var(--text--base--secondary);
+}
+
+.combobox__icon {
+  flex-shrink: 0;
+  fill: var(--icon--base--secondary);
+}
+
+/* Botón limpiar (⊗) — funcional, requiere aria-label */
+/* Caja declarada: era el único control del sistema sin width/height propios — el área de toque
+   quedaba a merced del tamaño del SVG, sin garantía del mínimo de 24×24 de WCAG 2.5.8. */
+.combobox__clear {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--neo-icon-size-lg);
+  height: var(--neo-icon-size-lg);
+  padding: 0;
+  border: none;
+  border-radius: var(--neo-radius-pill);
+  background: transparent;
+  cursor: pointer;
+}
+
+/* WCAG 2.4.7 */
+.combobox__clear:focus-visible {
+  outline: var(--neo-stroke-focus-ring-width) solid var(--focus--ring--default);
+  outline-offset: 2px;
+}
+
+.combobox__clear svg {
+  fill: var(--icon--base--secondary);
+}
+
+.combobox__chevron {
+  flex-shrink: 0;
+  fill: var(--icon--base--secondary);
+  transition: transform 150ms ease;
+}
+
+/* Helper & feedback */
+
+.combobox__helper,
+.combobox__feedback {
+  font-size: var(--neo-type-body-md-regular-size);
+  font-weight: var(--neo-type-body-md-regular-weight);
+  line-height: var(--neo-type-body-md-regular-line-height);
+}
+
+.combobox__helper   { color: var(--text--base--secondary); }
+.combobox__feedback { color: var(--text--semantic--error); }
+
+/* States */
+
+/* active · writing · no-results — panel abierto: borde focus 2px + chevron rotado */
+.combobox--active .combobox__field,
+.combobox--writing .combobox__field,
+.combobox--no-results .combobox__field {
+  border-width: var(--neo-stroke-sm);
+  border-color: var(--border--base--focus);
+}
+
+.combobox--active .combobox__chevron,
+.combobox--writing .combobox__chevron,
+.combobox--no-results .combobox__chevron {
+  transform: rotate(180deg);
+}
+
+/* focus — anillo ring + gap (dos capas), EXCLUSIVO de teclado (a11y).
+   Gobernado por la clase `.combobox--focus`, NO por `:focus-visible`: en un <input>
+   de texto `:focus-visible` también dispara con mouse y rompería el "solo teclado".
+   CONTRATO: el consumidor enciende `.combobox--focus` detectando la modalidad de input
+   (keydown → teclado · pointerdown → puntero). Con mouse mandan los estados active/writing. */
+.combobox--focus .combobox__field {
+  outline: none;
+  box-shadow:
+    0 0 0 var(--neo-stroke-focus-ring-width) var(--focus--gap--default),
+    0 0 0 calc(var(--neo-stroke-focus-ring-width) * 2) var(--focus--ring--default);
+}
+
+/* filled — valor seleccionado: borde default 1px, chevron primario */
+.combobox--filled .combobox__field {
+  border-width: var(--neo-stroke-xs);
+  border-color: var(--border--base--default);
+}
+
+.combobox--filled .combobox__chevron {
+  fill: var(--icon--base--default);
+}
+
+/* error — borde 2px (coexiste con focus → conserva el anillo) */
+.combobox--error .combobox__field {
+  border-width: var(--neo-stroke-sm);
+  border-color: var(--border--semantic--error-solid);
+}
+
+.combobox--error.combobox--focus .combobox__field {
+  box-shadow:
+    0 0 0 var(--neo-stroke-focus-ring-width) var(--focus--gap--default),
+    0 0 0 calc(var(--neo-stroke-focus-ring-width) * 2) var(--focus--ring--default);
+}
+
+.combobox--error .combobox__label {
+  color: var(--text--semantic--error);
+}
+
+/* read-only — fondo neutro medio, borde default 1px */
+.combobox--readonly .combobox__field {
+  background: var(--fill--base--medium);
+  border-color: var(--border--base--default);
+  pointer-events: none;
+}
+
+.combobox--readonly .combobox__input {
+  cursor: default;
+}
+
+/* disabled — fondo disabled, borde disabled 1px */
+.combobox--disabled .combobox__field {
+  background: var(--fill--base--disabled);
+  border-color: var(--border--base--disabled);
+  pointer-events: none;
+}
+
+.combobox--disabled .combobox__label,
+.combobox--disabled .combobox__input,
+.combobox--disabled .combobox__helper {
+  color: var(--text--base--disabled);
+}
+
+.combobox--disabled .combobox__icon,
+.combobox--disabled .combobox__clear svg,
+.combobox--disabled .combobox__chevron {
+  fill: var(--icon--base--disabled);
+}
+
+/* no-results — mensaje de vacío explícito en el panel (menu/list) */
+
+.menu-list__empty {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding-block: var(--neo-space-md);
+  padding-inline: var(--neo-space-lg);
+  font-size: var(--neo-type-body-lg-regular-size);
+  font-weight: var(--neo-type-body-lg-regular-weight);
+  line-height: var(--neo-type-body-lg-regular-line-height);
+  color: var(--text--base--secondary);
+  list-style: none;
+}
+
+/* Ícono de ayuda (ⓘ) junto al label — abre el tooltip (master: icon-tooltip).
+   `semantic/info` en xs, self-colored: solo tamaño (ver text-field.css). */
+.combobox__icon--tooltip {
+  width: var(--neo-icon-size-xs);
+  height: var(--neo-icon-size-xs);
+  flex-shrink: 0;
+}

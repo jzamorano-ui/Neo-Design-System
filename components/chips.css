@@ -1,0 +1,82 @@
+/* chips.css — Neo
+   Label `body/md-medium` · hover y seleccionado con RELLENO PRIMARY (oscuro,
+   texto/íconos en contrast). Consume la capa de tokens Neo.
+   Spec: chips.md */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--neo-space-xs);            /* 4 — master (space/xs); estaba en 8 */
+  padding-inline: var(--neo-space-md);
+  padding-block: var(--neo-space-sm);
+  border-radius: var(--neo-radius-pill);
+  border: var(--neo-stroke-xs) solid var(--border--base--default);
+  background: var(--fill--base--default);
+  font-size: var(--neo-type-body-md-medium-size);
+  font-weight: var(--neo-type-body-md-medium-weight);
+  line-height: var(--neo-type-body-md-medium-line-height);
+  color: var(--text--base--default);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 100ms ease, border-color 100ms ease, color 100ms ease;
+}
+
+.chip svg,
+.chip [aria-hidden="true"] {
+  fill: var(--icon--base--default);
+  width: var(--neo-icon-size-xs);
+  height: var(--neo-icon-size-xs);
+  flex-shrink: 0;
+}
+
+/* Hover — relleno primary (oscuro), texto e íconos en contrast. El borde iguala al relleno:
+   el master no le pone stroke. Medido 2026-08-03: 8.93:1 contra el chip disponible. */
+.chip:hover:not([disabled]):not(.chip--disabled):not([aria-pressed="true"]):not(.chip--selected) {
+  background: var(--fill--primary--hover);
+  border-color: var(--fill--primary--hover);
+  color: var(--text--base--contrast);
+}
+
+.chip:hover:not([disabled]):not(.chip--disabled):not([aria-pressed="true"]):not(.chip--selected) svg,
+.chip:hover:not([disabled]):not(.chip--disabled):not([aria-pressed="true"]):not(.chip--selected) [aria-hidden="true"] {
+  fill: var(--icon--base--contrast);
+}
+
+/* Selected — relleno primary (oscuro), texto/íconos en contrast.
+   Era secondary/active y daba 2.18:1 contra el disponible (excepción E3). Ahora 16.64:1. */
+.chip[aria-pressed="true"],
+.chip--selected {
+  background: var(--fill--primary--active);
+  border-color: var(--fill--primary--active);
+  color: var(--text--base--contrast);
+}
+
+.chip[aria-pressed="true"] svg,
+.chip[aria-pressed="true"] [aria-hidden="true"],
+.chip--selected svg,
+.chip--selected [aria-hidden="true"] {
+  fill: var(--icon--base--contrast);
+}
+
+/* Focus */
+.chip:focus-visible {
+  outline: var(--neo-stroke-focus-ring-width) solid var(--focus--ring--default);
+  outline-offset: 0.125rem;
+  /* el gap: la segunda capa del foco, que el master sí tiene (medido 2026-07-28) */
+  box-shadow: 0 0 0 var(--neo-stroke-focus-ring-width) var(--focus--gap--default);
+}
+
+/* Disabled */
+.chip[disabled],
+.chip--disabled {
+  background: var(--fill--base--disabled);   /* master (medido 2026-07-28); estaba en base/light */
+  border-color: var(--border--base--disabled);
+  color: var(--text--base--disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.chip[disabled] svg,
+.chip--disabled svg {
+  fill: var(--icon--base--disabled);
+}
